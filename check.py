@@ -1,14 +1,11 @@
 import pickle
 import time
 from gmpy2 import mpz, powmod
-# from numpy.random import seed
-# from numpy.random import randint
-# from itertools import zip_longest
 
 if __name__ == "__main__":
     # Load in the tables
     start = time.perf_counter()
-    tableSize = 715 # decided when the tables are made, simply grabbed from sorting code
+    tableSize = 715 # decided when the tables are made in generating code
     with open("leftTable.pkl", "rb") as file:
         leftTable = pickle.load(file)
     
@@ -38,7 +35,6 @@ if __name__ == "__main__":
             test = powmod(g, exponent, P)
             if test == 1:
                 SigCount = SigCount + 1
-                # print ("The signature hit was:", i)
     
         for j in setQ:
             exponent = 2
@@ -48,7 +44,6 @@ if __name__ == "__main__":
             test = powmod(g, exponent, Q)
             if test == 1:
                 SigCount = SigCount + 1
-                # print ("The signature hit was:", i)
 
     for key in range(len(rightTable)):
         g = mpz(rightTable[key][0])
@@ -65,7 +60,6 @@ if __name__ == "__main__":
             test = powmod(g, exponent, P)
             if test == 1:
                 SigCount = SigCount + 1
-                # print ("The signature hit was:", i)
     
         for j in setQ:
             exponent = 2
@@ -75,7 +69,6 @@ if __name__ == "__main__":
             test = powmod(g, exponent, Q)
             if test == 1:
                 SigCount = SigCount + 1
-                # print ("The signature hit was:", i)
 
     print ("the number of signatures hit was: ", SigCount)
     print('Time to check that was:', time.perf_counter() - start)
